@@ -15,7 +15,7 @@ export default function App() {
 
   return (
     <>
-      <Navbar />
+      <Navbar step={step} />
       <main className="container mx-auto p-6">
         {step === 1 && <Step1 next={next} />}
         {step === 2 && <Step2 next={next} prev={prev} />}

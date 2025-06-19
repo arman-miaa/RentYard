@@ -86,16 +86,7 @@ export function CondominiumsInformation() {
 
   return (
     <div className="min-h-screen bg-base-100">
-      {/* Header */}
-      <div className="flex items-center justify-between p-6 border-b bg-base-200">
-        <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
-            <Home className="w-5 h-5 text-white" />
-          </div>
-          <span className="text-xl font-semibold text-primary">RentYard</span>
-        </div>
-        <button className="btn btn-ghost text-gray-600">Save & Exit</button>
-      </div>
+  
 
       <div className="max-w-4xl mx-auto p-6">
         <h1 className="text-2xl font-semibold mb-6">
