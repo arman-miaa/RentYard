@@ -8,7 +8,7 @@ const Navbar = () => {
           <img className=" text-xl cursor-pointer" src={logo} alt="logo" />
         </div>
         <div className="flex-none">
-          <button className="btn btn-xs">Exit</button>
+          <button className="btn btn-sm font-bold">Exit</button>
         </div>
       </div>
     </div>
