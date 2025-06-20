@@ -1,22 +1,42 @@
-import {  X } from "lucide-react";
+import { Upload, X } from "lucide-react";
+
 export default function AboutModal({ onClose }) {
+  const handleAdd = () => {
+    onClose();
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div className="bg-white p-4 rounded-lg">
-        <div className=" bg-[#f4f4f4] p-2 rounded-lg flex items-center justify-between mb-4">
-          <h2 className="text-xl text-[#6F6C6A] ">Leasing Info</h2>
+      <div className="bg-white rounded-lg w-full max-w-3xl mx-4 max-h-[90vh] overflow-y-auto shadow-lg">
+        {/* Header */}
+        <div className="flex items-center justify-between bg-[#F4F4F4] p-4">
+          <h2 className="text-lg font-semibold text-[#938282]">
+            About the property (optional)
+          </h2>
           <button onClick={onClose} className="btn btn-sm btn-ghost">
             <X className="w-5 h-5" />
           </button>
         </div>
-        <h2 className="text-xl font-bold mb-2">About Property</h2>
-        <p>Modal content goes here...</p>
-        <div className="flex justify-end">
+
+        <div className="p-2">
+          <textarea
+            className="border rounded-xl border-base-300 w-full p-2 "
+            defaultValue="Type message here"
+            name=""
+            id=""
+            cols="30"
+            rows="7"
+            
+          ></textarea>
+        </div>
+
+        {/* Footer */}
+        <div className="flex justify-end p-4 border-t border-base-300">
           <button
-            onClick={onClose}
-            className="mt-4 btn btn-sm bg-[#316EED] text-white "
+            onClick={handleAdd}
+            className="btn bg-[#316EED] text-white px-6"
           >
-            Close
+            Add
           </button>
         </div>
       </div>

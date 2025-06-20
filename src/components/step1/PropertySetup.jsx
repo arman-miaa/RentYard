@@ -104,8 +104,8 @@ const PropertySetup = ({ next }) => {
 
               return (
                 <div
-                  key={type.id} // or role.id
-                  onClick={() => setSelectedPropertyType(type.id)} // অথবা setSelectedRole(role.id)
+                  key={type.id} 
+                  onClick={() => setSelectedPropertyType(type.id)} 
                   className={`p-6 border-2 rounded-lg cursor-pointer transition-all hover:border-blue-200 ${
                     isSelected ? "border-blue-400" : "border-gray-200"
                   }`}
@@ -114,13 +114,13 @@ const PropertySetup = ({ next }) => {
                     {/* Icon on the left */}
                     <IconComponent className="w-5 h-6" />
 
-                    {/* Title and description on the right, centered vertically */}
+                
                     <div className="space-y-1">
                       <h3 className={`font-semibold text-base`}>
-                        {type.title /* or role.title */}
+                        {type.title }
                       </h3>
                       <p className={`text-sm`}>
-                        {type.description /* or role.description */}
+                        {type.description }
                       </p>
                     </div>
                   </div>

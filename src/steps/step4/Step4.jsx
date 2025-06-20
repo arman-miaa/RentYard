@@ -3,9 +3,7 @@ import { SubscriptionPlans } from "../../components/step4/SubscriptionPlans";
 const Step4 = ({ prev }) => {
   return (
     <>
-      
-      <SubscriptionPlans prev={ prev} />
-  
+      <SubscriptionPlans prev={prev} />
     </>
   );
 };

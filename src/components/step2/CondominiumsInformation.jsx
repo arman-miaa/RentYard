@@ -118,26 +118,23 @@ export function CondominiumsInformation({prev,next}) {
                 key={section.id}
                 className="card bg-base-100 border border-base-300 hover:shadow transition-all"
               >
-                <div className="card-body p-4">
+                <div className="card-body p-3">
                   <div className="flex items-center justify-between">
-                    <div>
-                      <div className="flex items-center space-x-2">
-                        <span className="font-medium">{section.label}</span>
-                        {section.required && (
-                          <span className="text-red-500 text-sm">
-                            (Required)
-                          </span>
-                        )}
-                      </div>
-                      {section.description && (
-                        <p className="text-sm text-gray-500 mt-1">
-                          {section.description}
-                        </p>
-                      )}
+                    <div className="flex items-center space-x-2 truncate">
+                      <span className="font-medium text-sm text-[#272B35] truncate">
+                        {section.label}
+                      </span>
+                      <span
+                        className={`text-xs ${
+                          section.required ? "text-red-500" : "text-gray-500"
+                        }`}
+                      >
+                        {section.required ? "(Required)" : "(Optional)"}
+                      </span>
                     </div>
                     <button
                       onClick={() => setActiveModal(section.id)}
-                      className="btn btn-sm btn-ghost text-primary"
+                      className="btn btn-sm btn-ghost text-primary whitespace-nowrap"
                     >
                       <Plus className="w-4 h-4 mr-1" /> Add
                     </button>
@@ -194,19 +191,45 @@ export function CondominiumsInformation({prev,next}) {
           </div>
         </div>
       </div>
-      {activeModal === "about-property" && <AboutModal onClose={() => setActiveModal(null)} />}
-  {activeModal === "application-agreement" && <ApplicationModal onClose={() => setActiveModal(null)} />}
-  {activeModal === "charges" && <ChargesModal onClose={() => setActiveModal(null)} />}
-  {activeModal === "community-amenity" && <CommunityModal onClose={() => setActiveModal(null)} />}
-  {activeModal === "nearest-educational" && <EducationalModal onClose={() => setActiveModal(null)} />}
-  {activeModal === "nearest-landmark" && <LandmarkModal onClose={() => setActiveModal(null)} />}
-  {activeModal === "leasing-info" && <LeasingModal onClose={() => setActiveModal(null)} />}
-  {activeModal === "parking" && <ParkingModal onClose={() => setActiveModal(null)} />}
-  {activeModal === "pet-fees" && <PetModal onClose={() => setActiveModal(null)} />}
-  {activeModal === "property-address" && <PropertyModal onClose={() => setActiveModal(null)} />}
-  {activeModal === "rent-frequency" && <RentModal onClose={() => setActiveModal(null)} />}
-  {activeModal === "nearest-stations" && <StationsModal onClose={() => setActiveModal(null)} />}
-  {activeModal === "utilities-provider" && <UtilitiesModal onClose={() => setActiveModal(null)} />}
+      {activeModal === "about-property" && (
+        <AboutModal onClose={() => setActiveModal(null)} />
+      )}
+      {activeModal === "application-agreement" && (
+        <ApplicationModal onClose={() => setActiveModal(null)} />
+      )}
+      {activeModal === "charges" && (
+        <ChargesModal onClose={() => setActiveModal(null)} />
+      )}
+      {activeModal === "community-amenity" && (
+        <CommunityModal onClose={() => setActiveModal(null)} />
+      )}
+      {activeModal === "nearest-educational" && (
+        <EducationalModal onClose={() => setActiveModal(null)} />
+      )}
+      {activeModal === "nearest-landmark" && (
+        <LandmarkModal onClose={() => setActiveModal(null)} />
+      )}
+      {activeModal === "leasing-info" && (
+        <LeasingModal onClose={() => setActiveModal(null)} />
+      )}
+      {activeModal === "parking" && (
+        <ParkingModal onClose={() => setActiveModal(null)} />
+      )}
+      {activeModal === "pet-fees" && (
+        <PetModal onClose={() => setActiveModal(null)} />
+      )}
+      {activeModal === "property-address" && (
+        <PropertyModal onClose={() => setActiveModal(null)} />
+      )}
+      {activeModal === "rent-frequency" && (
+        <RentModal onClose={() => setActiveModal(null)} />
+      )}
+      {activeModal === "nearest-stations" && (
+        <StationsModal onClose={() => setActiveModal(null)} />
+      )}
+      {activeModal === "utilities-provider" && (
+        <UtilitiesModal onClose={() => setActiveModal(null)} />
+      )}
     </div>
   );
 }

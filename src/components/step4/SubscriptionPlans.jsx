@@ -1,4 +1,3 @@
-"use client";
 
 import { useState } from "react";
 import { Home, CreditCard, Plus } from "lucide-react";

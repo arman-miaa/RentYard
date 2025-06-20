@@ -528,8 +528,7 @@ const [isLeasingModalOpen, setIsLeasingModalOpen] = useState(false);
             <span className="text-gray-500">(Its not unit photo)</span>
           </h3>
 
-          {/* Featured Photos */}
-          {/* Featured Photos */}
+        
           <h4 className="font-medium mb-3">Featured photos*</h4>
           <div className="grid grid-cols-6 gap-3 mb-8">
             <PhotoUploadBox label="Upload cover photo (Max size 5MB)" isLarge />

@@ -141,7 +141,7 @@ export default function PropertyManagementForm() {
                   })
                 }
               />
-              {/* Add other condo info inputs similarly */}
+             
             </div>
           )}
 
@@ -165,7 +165,7 @@ export default function PropertyManagementForm() {
                   })
                 }
               />
-              {/* Add other address inputs similarly */}
+            
             </div>
           )}
 
