@@ -1,4 +1,3 @@
-"use client";
 
 // import { useState } from "react";
 import { Home, Plus, Upload, Play, HelpCircle } from "lucide-react";
@@ -97,7 +96,7 @@ export function CondominiumsInformation({prev,next}) {
           {formSections.map((section) => (
             <div
               key={section.id}
-              className="card bg-base-100 border hover:shadow transition-all"
+              className="card bg-base-100 border border-base-300 hover:shadow transition-all"
             >
               <div className="card-body p-4">
                 <div className="flex items-center justify-between">
@@ -116,7 +115,7 @@ export function CondominiumsInformation({prev,next}) {
                   </div>
                   <button className="btn btn-sm btn-ghost text-primary">
                     <Plus className="w-4 h-4 mr-1" /> Add
-                  </button>
+                  </button> 
                 </div>
               </div>
             </div>
@@ -139,16 +138,7 @@ export function CondominiumsInformation({prev,next}) {
 
           
 
-          {/* More Photos
-          <h4 className="font-medium mb-3">
-            More photos{" "}
-            <span className="text-gray-500 font-normal">(optional)</span>
-          </h4>
-          <div className="grid grid-cols-6 gap-3 mb-8">
-            {Array.from({ length: 8 }).map((_, index) => (
-              <PhotoUploadBox key={index} />
-            ))}
-          </div> */}
+  
 
           {/* Videos Section */}
           <div className="mb-8 border border-base-300 p-2 rounded-xl ">
@@ -183,3 +173,6 @@ export function CondominiumsInformation({prev,next}) {
     </div>
   );
 }
+
+
+
