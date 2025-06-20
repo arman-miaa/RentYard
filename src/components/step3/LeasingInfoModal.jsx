@@ -1,9 +1,9 @@
-"use client";
+
 
 import { useState } from "react";
 import { X } from "lucide-react";
 
-export default function LeasingInfoModal({ isOpen, onClose, onSave }) {
+export default function LeasingInfoModal({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
     managerName: "Alex Johan",
     phoneNumber: "+880",
@@ -16,10 +16,10 @@ export default function LeasingInfoModal({ isOpen, onClose, onSave }) {
     zipCode: "75061",
   });
 
-  const handleSave = () => {
-    onSave(formData);
-    onClose();
-  };
+  // const handleSave = () => {
+  //   onSave(formData);
+  //   onClose();
+  // };
 
   const handleInputChange = (field, value) => {
     setFormData((prev) => ({
@@ -31,23 +31,26 @@ export default function LeasingInfoModal({ isOpen, onClose, onSave }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-40 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
       <div className="bg-white w-full max-w-3xl p-6 rounded-lg shadow-lg overflow-y-auto max-h-[90vh]">
         {/* Header */}
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold">Leasing Info</h2>
+        <div className=" bg-[#f4f4f4] p-2 rounded-lg flex items-center justify-between mb-4">
+          <h2 className="text-xl text-[#6F6C6A] ">Leasing Info</h2>
           <button onClick={onClose} className="btn btn-sm btn-ghost">
             <X className="w-5 h-5" />
           </button>
         </div>
-
+        {/* #272B35
+#FF6A62 */}
         {/* Form */}
         <div className="space-y-6">
           {/* Manager Info */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="label">
-                <span className="label-text">Leasing manager name*</span>
+                <span className="label-text text-[#272B35] ">
+                  Leasing manager name<span className="text-[#FF6A62]">*</span>
+                </span>
               </label>
               <input
                 className="input input-bordered w-full"
@@ -60,8 +63,9 @@ export default function LeasingInfoModal({ isOpen, onClose, onSave }) {
 
             <div>
               <label className="label">
-                <span className="label-text">
-                  Leasing manager phone number*
+                <span className="label-text text-[#272B35] ">
+                  Leasing manager phone number
+                  <span className="text-[#FF6A62]">*</span>
                 </span>
               </label>
               <div className="flex gap-2">
@@ -84,35 +88,43 @@ export default function LeasingInfoModal({ isOpen, onClose, onSave }) {
 
           <div>
             <label className="label">
-              <span className="label-text">Leasing manager email*</span>
+              <span className="label-text text-[#272B35] ">
+                Leasing manager email
+                <span className="text-[#FF6A62]">*</span>
+              </span>
             </label>
-            <input
-              type="email"
-              className="input input-bordered w-full"
-              value={formData.email}
-              onChange={(e) => handleInputChange("email", e.target.value)}
-            />
-          </div>
-
-          {/* Address */}
-          <div>
-            <label className="flex items-center gap-2">
+            <div className="flex items-center gap-4">
               <input
-                type="checkbox"
-                className="checkbox"
-                checked={formData.sameAsProperty}
-                onChange={(e) =>
-                  handleInputChange("sameAsProperty", e.target.checked)
-                }
+                type="email"
+                className="input input-bordered "
+                value={formData.email}
+                onChange={(e) => handleInputChange("email", e.target.value)}
               />
-              <span className="label-text">Address (same as property)</span>
-            </label>
+              {/* Address */}
+              <div>
+                <label className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    checked={formData.sameAsProperty}
+                    onChange={(e) =>
+                      handleInputChange("sameAsProperty", e.target.checked)
+                    }
+                  />
+                  <span className="label-text">Address (same as property)</span>
+                </label>
+              </div>
+            </div>
           </div>
+   
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label className="label">
-                <span className="label-text">Street address*</span>
+                <span className="label-text text-[#272B35] ">
+                  Street address
+                  <span className="text-[#FF6A62]">*</span>
+                </span>
               </label>
               <input
                 className="input input-bordered w-full"
@@ -125,7 +137,10 @@ export default function LeasingInfoModal({ isOpen, onClose, onSave }) {
             </div>
             <div>
               <label className="label">
-                <span className="label-text">Apt, suite, unit*</span>
+                <span className="label-text text-[#272B35] ">
+                  Apt, suite, unit
+                  <span className="text-[#FF6A62]">*</span>
+                </span>
               </label>
               <input
                 className="input input-bordered w-full"
@@ -134,12 +149,12 @@ export default function LeasingInfoModal({ isOpen, onClose, onSave }) {
                 onChange={(e) => handleInputChange("aptUnit", e.target.value)}
               />
             </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label className="label">
-                <span className="label-text">City/Town*</span>
+                <span className="label-text text-[#272B35] ">
+                  City/Town
+                  <span className="text-[#FF6A62]">*</span>
+                </span>
               </label>
               <input
                 className="input input-bordered w-full"
@@ -148,10 +163,15 @@ export default function LeasingInfoModal({ isOpen, onClose, onSave }) {
                 onChange={(e) => handleInputChange("city", e.target.value)}
               />
             </div>
+          </div>
 
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label className="label">
-                <span className="label-text">State/Territory*</span>
+                <span className="label-text text-[#272B35] ">
+                  State/Territory
+                  <span className="text-[#FF6A62]">*</span>
+                </span>
               </label>
               <select
                 className="select select-bordered w-full"
@@ -170,7 +190,10 @@ export default function LeasingInfoModal({ isOpen, onClose, onSave }) {
 
             <div>
               <label className="label">
-                <span className="label-text">Zip code*</span>
+                <span className="label-text text-[#272B35] ">
+                  Zip code
+                  <span className="text-[#FF6A62]">*</span>
+                </span>
               </label>
               <input
                 className="input input-bordered w-full"
@@ -184,7 +207,10 @@ export default function LeasingInfoModal({ isOpen, onClose, onSave }) {
 
         {/* Action Button */}
         <div className="flex justify-end mt-6 border-t pt-4">
-          <button onClick={handleSave} className="btn btn-primary px-8">
+          <button
+            onClick={onClose}
+            className="btn bg-[#316EED] text-white px-8"
+          >
             Add
           </button>
         </div>

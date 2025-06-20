@@ -1,8 +1,12 @@
 import { Edit,Home, Trash2, Plus, Upload, HelpCircle, X } from "lucide-react";
 
 import ProgressBar from "../ProgressBar";
+import { useState } from "react";
+import LeasingInfoModal from "./LeasingInfoModal";
 
 const CondominiumsFilled = ({ prev, next }) => {
+const [isLeasingModalOpen, setIsLeasingModalOpen] = useState(false);
+
   const PhotoUploadBox = ({ label, isLarge }) => (
     <div
       className={`border-2 border-dashed border-blue-300 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-blue-400 transition-colors ${
@@ -46,25 +50,36 @@ const CondominiumsFilled = ({ prev, next }) => {
 
           {/* Leasing Info */}
 
-          <div className=" border border-base-300 p-4 rounded-lg">
+          <div className="border border-base-300 p-4 rounded-lg">
             <div className="flex justify-between items-center mb-3">
               <h3 className="font-medium text-gray-700">
                 Leasing info<span className="text-red-500">(Required)</span>
               </h3>
-              <button className="text-blue-500 hover:text-blue-700 flex items-center gap-1">
+              <button
+                onClick={() => {
+                 
+
+                  setIsLeasingModalOpen(true);
+                }}
+                className="text-blue-500 hover:text-blue-700 flex items-center gap-1"
+              >
                 <Edit className="w-4 h-4" />
                 Edit
               </button>
             </div>
             <hr className="text-base-300" />
-            <p className="text-sm text-gray-600  border-base-300 mt-2">
-              Leasing manager: Alex Johan fitex, leasing@rentyeard.com
-            </p>
-            <p className="text-sm text-gray-600 mt-1">
-              +8801632177501{" "}
-              <span className="text-gray-400">Address(same as property)</span>{" "}
+            <p className="text-sm text-gray-600 mt-2">
+              Leasing term: 12 months, Deposit: $500, Rent starts from $1200
             </p>
           </div>
+
+          {/* ✅ Modal should be rendered outside the button */}
+          {isLeasingModalOpen && (
+            <LeasingInfoModal
+              isOpen={isLeasingModalOpen}
+              onClose={() => setIsLeasingModalOpen(false)}
+            />
+          )}
 
           {/* Charges */}
 
@@ -522,8 +537,6 @@ const CondominiumsFilled = ({ prev, next }) => {
               <PhotoUploadBox key={index} />
             ))}
           </div>
-
-   
         </div>
       </div>
 
