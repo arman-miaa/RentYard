@@ -33,7 +33,9 @@ export default function PropertyModal({ onClose }) {
       <div className="bg-white rounded-lg w-full max-w-3xl mx-4 max-h-[90vh] overflow-y-auto shadow-lg">
         {/* Header */}
         <div className="flex items-center justify-between bg-[#F4F4F4] p-4 ">
-          <h2 className="text-lg font-semibold">Property address</h2>
+          <h2 className="text-lg font-semibold text-[#938282]">
+            Property address
+          </h2>
           <button onClick={onClose} className="btn btn-sm btn-ghost">
             <X className="w-5 h-5" />
           </button>
@@ -190,7 +192,7 @@ export default function PropertyModal({ onClose }) {
         <div className="flex justify-end p-4 border-t border-base-300">
           <button
             onClick={handleAdd}
-            className="btn bg-[#316EED] text-white px-6"
+            className="btn bg-[#316EED] text-white px-4"
           >
             Add
           </button>
