@@ -15,6 +15,7 @@ import {
   Refrigerator,
   WashingMachine,
 } from "lucide-react";
+import ProgressBar from "../ProgressBar";
 
 // 📦 Reusable component for uploading photos
 const PhotoUploadBox = ({ label, isLarge = false, hasImage = false }) => (
@@ -32,7 +33,7 @@ const PhotoUploadBox = ({ label, isLarge = false, hasImage = false }) => (
   </div>
 );
 
-export function CondominiumsFilled() {
+export function CondominiumsFilled({prev,next}) {
   const [sections, setSections] = useState([
     {
       id: "property-address",
@@ -263,11 +264,21 @@ export function CondominiumsFilled() {
             ))}
           </div>
         </div>
-
+        <ProgressBar step={3} totalSteps={4} />
         {/* Navigation */}
-        <div className="flex justify-between border-t pt-6">
-          <button className="btn btn-outline">Back</button>
-          <button className="btn btn-primary px-8">Next</button>
+        <div className="flex justify-between  pt-6">
+          <button
+            onClick={prev}
+            className=" border-b-2 leading-none mt-4 cursor-pointer"
+          >
+            Back
+          </button>
+          <button
+            onClick={next}
+            className="btn btn-primary rounded-lg bg-[#316EED] border-none px-8"
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>

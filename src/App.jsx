@@ -21,7 +21,7 @@ export default function App() {
         {step === 2 && <Step2 next={next} prev={prev} />}
         {step === 3 && <Step3 next={next} prev={prev} />}
         {step === 4 && <Step4 prev={prev} />}
-        {step !== 1 && <ProgressBar step={step} totalSteps={totalSteps} />}
+        {/* {step !== 1 && <ProgressBar step={step} totalSteps={totalSteps} />} */}
       </main>
     </>
   );

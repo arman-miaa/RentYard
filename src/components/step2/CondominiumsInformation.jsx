@@ -2,8 +2,9 @@
 
 // import { useState } from "react";
 import { Home, Plus, Upload, Play, HelpCircle } from "lucide-react";
+import ProgressBar from "../ProgressBar";
 
-export function CondominiumsInformation() {
+export function CondominiumsInformation({prev,next}) {
 //   const [uploadedPhotos, setUploadedPhotos] = useState(0);
 
   const formSections = [
@@ -86,8 +87,6 @@ export function CondominiumsInformation() {
 
   return (
     <div className="min-h-screen bg-base-100">
-  
-
       <div className="max-w-4xl mx-auto p-6">
         <h1 className="text-2xl font-semibold mb-6">
           Condominiums information
@@ -169,9 +168,20 @@ export function CondominiumsInformation() {
         </div>
 
         {/* Navigation Buttons */}
-        <div className="flex justify-between pt-8 border-t">
-          <button className="btn btn-outline">Back</button>
-          <button className="btn btn-primary px-8">Next</button>
+          <ProgressBar step={2} totalSteps={4} />
+        <div className="flex justify-between pt-8 ">
+          <button
+            onClick={prev}
+            className=" border-b-2 leading-none mt-4 cursor-pointer"
+          >
+            Back
+          </button>
+          <button
+            onClick={next}
+            className="btn btn-primary rounded-lg bg-[#316EED] border-none px-8"
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>

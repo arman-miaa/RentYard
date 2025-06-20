@@ -3,9 +3,10 @@
 import { useState } from "react";
 import { Home, CreditCard, Plus } from "lucide-react";
 import { PaymentModal } from "./PaymentModalProps";
+import ProgressBar from "../ProgressBar";
 
 
-export function SubscriptionPlans() {
+export function SubscriptionPlans({prev}) {
   const [selectedPlan, setSelectedPlan] = useState("regular");
   const [selectedPayment, setSelectedPayment] = useState("");
   const [billingCycle, setBillingCycle] = useState("monthly");
@@ -169,9 +170,15 @@ export function SubscriptionPlans() {
             <Plus className="w-4 h-4 mr-1" /> Add new card
           </button>
         </div>
+        <ProgressBar step={4} totalSteps={4} />
+        <div className="flex justify-between items-center pt-8">
+          <button
+            onClick={prev}
+            className=" border-b-2 leading-none mt-4 cursor-pointer"
+          >
+            Back
+          </button>
 
-        <div className="flex justify-between items-center pt-8 border-t">
-          <button className="btn btn-outline">Back</button>
           <div className="flex items-center gap-4">
             <div className="text-right">
               <p className="text-sm text-gray-600">Total with card charges</p>

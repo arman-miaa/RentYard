@@ -2,25 +2,15 @@ import { CondominiumsInformation } from "../../components/step2/CondominiumsInfo
 
 export default function Step2({ next, prev }) {
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    next();
-  };
+ 
 
   return (
     <>
       
-      <CondominiumsInformation/>
+      <CondominiumsInformation prev={prev} next={next} />
       
 
-      <div className="flex justify-between items-center">
-        <button type="button" onClick={prev} className="btn btn-outline">
-          Back
-        </button>
-        <button type="submit" onClick={handleSubmit} className="btn btn-primary">
-          Next
-        </button>
-      </div>
+ 
     </>
   );
 }

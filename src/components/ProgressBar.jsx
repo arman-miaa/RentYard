@@ -1,11 +1,11 @@
 export default function ProgressBar({ step, totalSteps }) {
-  const progressPercent = (step / totalSteps) * 100;
+  const percentage = (step / totalSteps) * 100;
 
   return (
-    <div className="w-full bg-gray-200 rounded-full h-2 mt-6">
+    <div className="w-full h-[1px] bg-gray-200">
       <div
-        className="bg-primary h-2 rounded-full transition-all duration-300"
-        style={{ width: `${progressPercent}%` }}
+        className="h-full bg-black transition-all duration-300"
+        style={{ width: `${percentage}%` }}
       ></div>
     </div>
   );
