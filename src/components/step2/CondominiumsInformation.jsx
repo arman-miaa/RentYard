@@ -132,38 +132,34 @@ export function CondominiumsInformation({prev,next}) {
           <h4 className="font-medium mb-3">Featured photos*</h4>
           <div className="grid grid-cols-6 gap-3 mb-8">
             <PhotoUploadBox label="Upload cover photo (Max size 5MB)" isLarge />
-            {Array.from({ length: 10 }).map((_, index) => (
+            {Array.from({ length: 8 }).map((_, index) => (
               <PhotoUploadBox key={index} />
             ))}
           </div>
 
-          {/* More Photos */}
+          
+
+          {/* More Photos
           <h4 className="font-medium mb-3">
             More photos{" "}
             <span className="text-gray-500 font-normal">(optional)</span>
           </h4>
           <div className="grid grid-cols-6 gap-3 mb-8">
-            {Array.from({ length: 12 }).map((_, index) => (
+            {Array.from({ length: 8 }).map((_, index) => (
               <PhotoUploadBox key={index} />
             ))}
-          </div>
+          </div> */}
 
           {/* Videos Section */}
-          <div className="mb-8">
-            <div className="flex items-center justify-between mb-4">
+          <div className="mb-8 border border-base-300 p-2 rounded-xl ">
+            <div className="flex items-center justify-between ">
               <div className="flex items-center space-x-2">
                 <h4 className="font-medium">Videos</h4>
                 <span className="text-gray-500 font-normal">(optional)</span>
               </div>
               <HelpCircle className="w-5 h-5 text-gray-400" />
             </div>
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-              <Play className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600 mb-2">Upload property videos</p>
-              <p className="text-sm text-gray-500">
-                Drag and drop or click to browse
-              </p>
-            </div>
+        
           </div>
         </div>
 

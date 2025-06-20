@@ -1,286 +1,614 @@
-"use client";
-
-import { useState } from "react";
-import {
-  Home,
-  Edit,
-  Trash2,
-  Plus,
-  Upload,
-  AirVent,
-  Tv,
-  Fan,
-  Building,
-  BuildingIcon as Balcony,
-  Refrigerator,
-  WashingMachine,
-} from "lucide-react";
+import { Edit, Trash2, Plus, Upload, HelpCircle, X } from "lucide-react";
 import ProgressBar from "../ProgressBar";
 
-// 📦 Reusable component for uploading photos
-const PhotoUploadBox = ({ label, isLarge = false, hasImage = false }) => (
-  <div
-    className={`border-2 border-dashed border-blue-300 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-blue-400 transition-colors ${
-      isLarge ? "col-span-2 row-span-2 p-8" : "p-4"
-    } ${hasImage ? "bg-blue-50" : ""}`}
-  >
-    <Upload
-      className={`text-blue-400 mb-2 ${isLarge ? "w-8 h-8" : "w-6 h-6"}`}
-    />
-    {label && (
-      <span className="text-sm text-gray-600 text-center">{label}</span>
-    )}
-  </div>
-);
-
-export function CondominiumsFilled({prev,next}) {
-  const [sections, setSections] = useState([
-    {
-      id: "property-address",
-      title: "Property address",
-      required: true,
-      content:
-        "Dallas Apartments complex, https://rentyard.com, Suite unit: 3D\n1423 Dallas Rd, Dallas Tx 75201, USA",
-      hasEdit: true,
-      hasDelete: false,
-    },
-    {
-      id: "pet-fees",
-      title: "Pet fees",
-      required: false,
-      description: "Optional, add fees if you allow pet",
-      content:
-        "Dog, Max weight: 25lb, Monthly per rent: $100\nOne time pet fee: $100, Pet security deposit: $100",
-      hasEdit: true,
-      hasDelete: true,
-    },
-    // ✂️ Add other sections as needed
-  ]);
-
-  const amenities = [
-    { icon: AirVent, label: "Air conditioning", active: true },
-    { icon: Tv, label: "Cable ready", active: true },
-    { icon: Fan, label: "Ceiling fan", active: true },
-    { icon: Building, label: "High ceilings", active: false },
-    { icon: Balcony, label: "Private balcony", active: false },
-    { icon: Refrigerator, label: "Refrigerator", active: true },
-    { icon: WashingMachine, label: "Washer/dryer", active: false },
-  ];
-
-  const nearbyPlaces = [
-    {
-      category: "Nearest educational institution",
-      description: "Optional but recommended",
-      items: [
-        "Elementary school, Institution name, 2mile",
-        "High school, Institution name, 2mile",
-      ],
-    },
-  ];
-
-  const utilities = ["Internet - Provider A", "Cable - Provider B"];
-
+const CondominiumsFilled = ({prev,next}) => {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <div className="flex items-center justify-between p-6 border-b bg-gray-50">
-        <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
-            <Home className="w-5 h-5 text-white" />
-          </div>
-          <span className="text-xl font-semibold text-blue-600">RentYard</span>
-        </div>
-        <button className="btn btn-ghost text-gray-600">Save & Exit</button>
-      </div>
+    <div className="max-w-4xl mx-auto p-6 bg-white">
+      <h1 className="text-2xl font-semibold mb-8 text-gray-800">
+        Condominiums information
+      </h1>
 
-      <div className="max-w-5xl mx-auto p-6 space-y-6">
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">
-          Condominiums Information
-        </h1>
-
-        {/* Sections */}
-        <div className="grid md:grid-cols-2 gap-4">
-          {sections.map((section) => (
-            <div key={section.id} className="card border shadow-sm">
-              <div className="card-body">
-                <div className="flex justify-between">
-                  <div>
-                    <div className="font-semibold text-gray-900 flex items-center gap-1">
-                      {section.title}
-                      {section.required && (
-                        <span className="text-red-500 text-sm">(Required)</span>
-                      )}
-                    </div>
-                    {section.description && (
-                      <p className="text-sm text-gray-500">
-                        {section.description}
-                      </p>
-                    )}
-                  </div>
-                  <div className="flex gap-1">
-                    {section.hasEdit && (
-                      <button className="btn btn-xs btn-ghost text-blue-600">
-                        <Edit className="w-4 h-4" />
-                      </button>
-                    )}
-                    {section.hasDelete && (
-                      <button className="btn btn-xs btn-ghost text-red-600">
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    )}
-                  </div>
-                </div>
-                <p className="whitespace-pre-line text-sm text-gray-700 mt-2">
-                  {section.content}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Amenities */}
-        <div className="card border">
-          <div className="card-body">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Left Column */}
+        <div className="space-y-6">
+          {/* Property Address */}
+          <div className="bg-gray-50 p-4 rounded-lg">
             <div className="flex justify-between items-center mb-3">
-              <div>
-                <h2 className="font-semibold text-gray-900">
-                  Community's Amenities
-                </h2>
-                <p className="text-sm text-gray-500">
-                  Optional but recommended
-                </p>
-              </div>
-              <button className="btn btn-sm btn-ghost text-blue-600">
-                <Plus className="w-4 h-4" />
-                Add
+              <h3 className="font-medium text-gray-700">
+                Property address<span className="text-red-500">(Required)</span>
+              </h3>
+              <button className="text-blue-500 hover:text-blue-700 flex items-center gap-1">
+                <Edit className="w-4 h-4" />
+                Edit
               </button>
             </div>
-            <div className="flex flex-wrap gap-3">
-              {amenities.map((amenity, i) => {
-                const Icon = amenity.icon;
-                return (
-                  <div
-                    key={i}
-                    className={`badge gap-1 px-3 py-2 ${
-                      amenity.active
-                        ? "badge-primary"
-                        : "badge-ghost text-gray-600"
-                    }`}
-                  >
-                    <Icon className="w-4 h-4" />
-                    <span>{amenity.label}</span>
-                  </div>
-                );
-              })}
-            </div>
+            <p className="text-sm text-gray-600">
+              Dallas apartments complex, http://rentyeard.com, Total unit: 80
+              <br />
+              1423 Estara Rd Dallas TX 75077, USA
+            </p>
           </div>
-        </div>
 
-        {/* Nearby Places */}
-        {nearbyPlaces.map((group, i) => (
-          <div className="card border" key={i}>
-            <div className="card-body">
-              <div className="flex justify-between items-center mb-3">
-                <div>
-                  <h2 className="font-semibold text-gray-900">
-                    {group.category}
-                  </h2>
-                  <p className="text-sm text-gray-500">{group.description}</p>
-                </div>
-                <button className="btn btn-sm btn-ghost text-blue-600">
-                  <Plus className="w-4 h-4" />
-                  Add
+          {/* Leasing Info */}
+          <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="flex justify-between items-center mb-3">
+              <h3 className="font-medium text-gray-700">
+                Leasing Info<span className="text-red-500">(Required)</span>
+              </h3>
+              <button className="text-blue-500 hover:text-blue-700 flex items-center gap-1">
+                <Edit className="w-4 h-4" />
+                Edit
+              </button>
+            </div>
+            <p className="text-sm text-gray-600">
+              Leasing manager: Alex Johan fitex, leasing@rentyeard.com
+              <br />
+              +8801632177501 Address(same as property)
+            </p>
+          </div>
+
+          {/* Charges */}
+          <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="flex justify-between items-center mb-3">
+              <h3 className="font-medium text-gray-700">
+                Charges<span className="text-red-500">(Required)</span>
+              </h3>
+              <button className="text-blue-500 hover:text-blue-700 flex items-center gap-1">
+                <Edit className="w-4 h-4" />
+                Edit
+              </button>
+            </div>
+            <p className="text-sm text-gray-600">
+              Application fee: $100(All 18+ applicant), Admin fee: $15
+            </p>
+          </div>
+
+          {/* Rent Frequency */}
+          <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="flex justify-between items-center mb-3">
+              <h3 className="font-medium text-gray-700">
+                Rent frequency & payment reminder
+                <span className="text-red-500">(Required)</span>
+              </h3>
+              <button className="text-blue-500 hover:text-blue-700 flex items-center gap-1">
+                <Edit className="w-4 h-4" />
+                Edit
+              </button>
+            </div>
+            <p className="text-sm text-gray-600">
+              Rent payment frequency: Monthly, Rent reminder date: 25th every
+              month
+              <br />
+              Rent due date: 5th every month
+            </p>
+          </div>
+
+          {/* Application Agreement */}
+          <div className="bg-gray-50 p-4 rounded-lg">
+            <h3 className="font-medium text-gray-700 mb-3">
+              Application agreement
+              <span className="text-gray-500">(Optional)</span>
+            </h3>
+            <div className="flex items-center justify-between bg-white p-3 rounded border">
+              <div>
+                <p className="text-sm font-medium">Agreement: PDF</p>
+                <p className="text-xs text-gray-500">
+                  Accept immigrant & international student application
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <button className="text-blue-500 hover:text-blue-700">
+                  <Edit className="w-4 h-4" />
+                </button>
+                <button className="text-red-500 hover:text-red-700">
+                  <Trash2 className="w-4 h-4" />
                 </button>
               </div>
-              <ul className="space-y-2">
-                {group.items.map((item, idx) => (
-                  <li
-                    key={idx}
-                    className="flex justify-between items-center bg-gray-50 p-2 rounded"
-                  >
-                    <span className="text-sm">{item}</span>
-                    <div className="flex gap-1">
-                      <button className="btn btn-xs btn-ghost text-blue-600">
-                        <Edit className="w-3 h-3" />
-                      </button>
-                      <button className="btn btn-xs btn-ghost text-red-600">
-                        <Trash2 className="w-3 h-3" />
-                      </button>
-                    </div>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
-        ))}
 
-        {/* Utilities */}
-        <div className="card border">
-          <div className="card-body">
-            <div className="flex justify-between items-center mb-3">
-              <div>
-                <h2 className="font-semibold text-gray-900">Utilities</h2>
-                <p className="text-sm text-gray-500">(Optional)</p>
-              </div>
-              <button className="btn btn-sm btn-ghost text-blue-600">
+          {/* About Property */}
+          <div className="bg-gray-50 p-4 rounded-lg">
+            <h3 className="font-medium text-gray-700 mb-3">
+              About the property
+              <span className="text-gray-500">(Optional)</span>
+            </h3>
+            <p className="text-sm text-gray-600 mb-3">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <div className="flex gap-2">
+              <button className="text-blue-500 hover:text-blue-700">
+                <Edit className="w-4 h-4" />
+              </button>
+              <button className="text-red-500 hover:text-red-700">
+                <Trash2 className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Community Amenities */}
+          <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="font-medium text-gray-700">
+                Community's amenity/features
+                <span className="text-gray-500">
+                  (Optional but recommended)
+                </span>
+              </h3>
+              <button className="text-blue-500 hover:text-blue-700 flex items-center gap-1">
                 <Plus className="w-4 h-4" />
                 Add
               </button>
             </div>
-            <ul className="space-y-2">
-              {utilities.map((utility, i) => (
-                <li
-                  key={i}
-                  className="flex justify-between items-center bg-gray-50 p-2 rounded"
+            <div className="grid grid-cols-3 gap-3">
+              <div className="relative bg-white p-3 rounded-lg border text-center">
+                <button className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                  <X className="text-xs" />
+                </button>
+                <div className="text-2xl mb-1">❄️</div>
+                <p className="text-xs">Air conditioning</p>
+              </div>
+              <div className="relative bg-white p-3 rounded-lg border text-center">
+                <button className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                  <X className="text-xs" />
+                </button>
+                <div className="text-2xl mb-1">📺</div>
+                <p className="text-xs">Cable ready</p>
+              </div>
+              <div className="relative bg-white p-3 rounded-lg border text-center">
+                <button className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                  <X className="text-xs" />
+                </button>
+                <div className="text-2xl mb-1">🏠</div>
+                <p className="text-xs">Ceiling fan</p>
+              </div>
+              <div className="relative bg-white p-3 rounded-lg border text-center">
+                <button className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                  <X className="text-xs" />
+                </button>
+                <div className="text-2xl mb-1">🏠</div>
+                <p className="text-xs">High ceilings</p>
+              </div>
+              <div className="relative bg-white p-3 rounded-lg border text-center">
+                <button className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                  <X className="text-xs" />
+                </button>
+                <div className="text-2xl mb-1">🏠</div>
+                <p className="text-xs">Private balcony</p>
+              </div>
+              <div className="relative bg-white p-3 rounded-lg border text-center">
+                <button className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                  <X className="text-xs" />
+                </button>
+                <div className="text-2xl mb-1">❄️</div>
+                <p className="text-xs">Refrigerator</p>
+              </div>
+              <div className="relative bg-white p-3 rounded-lg border text-center">
+                <button className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                  <X className="text-xs" />
+                </button>
+                <div className="text-2xl mb-1">🌳</div>
+                <p className="text-xs">Wooded views</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column */}
+        <div className="space-y-6">
+          {/* Pet Fees */}
+          <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="font-medium text-gray-700">
+                Pet fees
+                <span className="text-gray-500">
+                  (Optional, add fees if you allow pet)
+                </span>
+              </h3>
+              <button className="text-blue-500 hover:text-blue-700 flex items-center gap-1">
+                <Plus className="w-4 h-4" />
+                Add
+              </button>
+            </div>
+            <div className="space-y-3">
+              <div className="bg-white p-3 rounded border">
+                <p className="text-sm font-medium">
+                  Dog, Max weight: 20lb, Monthly per rent: $100
+                </p>
+                <p className="text-xs text-gray-500">
+                  One time pet fee: $100, Pet security deposit: $100
+                </p>
+                <div className="flex gap-2 mt-2">
+                  <button className="text-blue-500 hover:text-blue-700">
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button className="text-red-500 hover:text-red-700">
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+              <div className="bg-white p-3 rounded border">
+                <p className="text-sm font-medium">
+                  Dog, Max weight: 20lb, Monthly per rent: $100
+                </p>
+                <p className="text-xs text-gray-500">
+                  One time pet fee: $100, Pet security deposit: $100
+                </p>
+                <div className="flex gap-2 mt-2">
+                  <button className="text-blue-500 hover:text-blue-700">
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button className="text-red-500 hover:text-red-700">
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Parking */}
+          <div className="bg-gray-50 p-4 rounded-lg">
+            <h3 className="font-medium text-gray-700 mb-3">
+              Parking<span className="text-gray-500">(optional)</span>
+            </h3>
+            <div className="bg-white p-3 rounded border">
+              <p className="text-sm font-medium mb-2">
+                Guest vehicle parking time: 2H
+              </p>
+              <p className="text-xs text-gray-600 mb-3">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+              <div className="flex gap-2">
+                <button className="text-blue-500 hover:text-blue-700">
+                  <Edit className="w-4 h-4" />
+                </button>
+                <button className="text-red-500 hover:text-red-700">
+                  <Trash2 className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Educational Institution */}
+          <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="font-medium text-gray-700">
+                Nearest educational institution
+                <span className="text-gray-500">
+                  (optional but recommended)
+                </span>
+              </h3>
+              <button className="text-blue-500 hover:text-blue-700 flex items-center gap-1">
+                <Plus className="w-4 h-4" />
+                Add
+              </button>
+            </div>
+            <div className="space-y-3">
+              <div className="bg-white p-3 rounded border flex justify-between items-center">
+                <p className="text-sm">
+                  Elementary school, Institution name, 2mile
+                </p>
+                <div className="flex gap-2">
+                  <button className="text-blue-500 hover:text-blue-700">
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button className="text-red-500 hover:text-red-700">
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+              <div className="bg-white p-3 rounded border flex justify-between items-center">
+                <p className="text-sm">High school, Institution name, 2mile</p>
+                <div className="flex gap-2">
+                  <button className="text-blue-500 hover:text-blue-700">
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button className="text-red-500 hover:text-red-700">
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+              <div className="bg-white p-3 rounded border flex justify-between items-center">
+                <p className="text-sm">
+                  Elementary school, Institution name, 2mile
+                </p>
+                <div className="flex gap-2">
+                  <button className="text-blue-500 hover:text-blue-700">
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button className="text-red-500 hover:text-red-700">
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Nearest Stations */}
+          <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="font-medium text-gray-700">
+                Nearest stations{" "}
+                <span className="text-gray-500">
+                  (optional but recommended)
+                </span>
+              </h3>
+              <button className="text-blue-500 hover:text-blue-700 flex items-center gap-1">
+                <Plus className="w-4 h-4" />
+                Add
+              </button>
+            </div>
+            <div className="space-y-3">
+              <div className="bg-white p-3 rounded border flex justify-between items-center">
+                <p className="text-sm">Bus, Stations name, 2mile</p>
+                <div className="flex gap-2">
+                  <button className="text-blue-500 hover:text-blue-700">
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button className="text-red-500 hover:text-red-700">
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+              <div className="bg-white p-3 rounded border flex justify-between items-center">
+                <p className="text-sm">Train, Stations name, 2mile</p>
+                <div className="flex gap-2">
+                  <button className="text-blue-500 hover:text-blue-700">
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button className="text-red-500 hover:text-red-700">
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+              <div className="bg-white p-3 rounded border flex justify-between items-center">
+                <p className="text-sm">Airport, Stations name, 2mile</p>
+                <div className="flex gap-2">
+                  <button className="text-blue-500 hover:text-blue-700">
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button className="text-red-500 hover:text-red-700">
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Nearest Landmark */}
+          <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="font-medium text-gray-700">
+                Nearest landmark{" "}
+                <span className="text-gray-500">
+                  (optional but recommended)
+                </span>
+              </h3>
+              <button className="text-blue-500 hover:text-blue-700 flex items-center gap-1">
+                <Plus className="w-4 h-4" />
+                Add
+              </button>
+            </div>
+            <div className="space-y-3">
+              <div className="bg-white p-3 rounded border flex justify-between items-center">
+                <p className="text-sm">Museums, Landmark name, 2mile</p>
+                <div className="flex gap-2">
+                  <button className="text-blue-500 hover:text-blue-700">
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button className="text-red-500 hover:text-red-700">
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+              <div className="bg-white p-3 rounded border flex justify-between items-center">
+                <p className="text-sm">Mosque, Landmark name, 2mile</p>
+                <div className="flex gap-2">
+                  <button className="text-blue-500 hover:text-blue-700">
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button className="text-red-500 hover:text-red-700">
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+              <div className="bg-white p-3 rounded border flex justify-between items-center">
+                <p className="text-sm">Temple, Landmark name, 2mile</p>
+                <div className="flex gap-2">
+                  <button className="text-blue-500 hover:text-blue-700">
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button className="text-red-500 hover:text-red-700">
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Utilities Provider */}
+          <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="font-medium text-gray-700">
+                Utilities provider
+                <span className="text-gray-500">
+                  (Optional but recommended)
+                </span>
+              </h3>
+              <button className="text-blue-500 hover:text-blue-700 flex items-center gap-1">
+                <Plus className="w-4 h-4" />
+                Add
+              </button>
+            </div>
+            <div className="space-y-3">
+              <div className="bg-white p-3 rounded border flex justify-between items-center">
+                <p className="text-sm">Internet-Utilities company name</p>
+                <div className="flex gap-2">
+                  <button className="text-blue-500 hover:text-blue-700">
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button className="text-red-500 hover:text-red-700">
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+              <div className="bg-white p-3 rounded border flex justify-between items-center">
+                <p className="text-sm">Cable-Utilities company name</p>
+                <div className="flex gap-2">
+                  <button className="text-blue-500 hover:text-blue-700">
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button className="text-red-500 hover:text-red-700">
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+              <div className="bg-white p-3 rounded border flex justify-between items-center">
+                <p className="text-sm">Internet-Utilities company name</p>
+                <div className="flex gap-2">
+                  <button className="text-blue-500 hover:text-blue-700">
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button className="text-red-500 hover:text-red-700">
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Property Gallery */}
+      <div className="col-span-1 lg:col-span-2 mt-8">
+        <div className="bg-gray-50 p-4 rounded-lg">
+          <h3 className="font-medium text-gray-700 mb-4">
+            Property gallery
+            <span className="text-gray-500">(Its not unit photo)</span>
+          </h3>
+
+          {/* Featured Photos */}
+          <div className="mb-6">
+            <h4 className="text-sm font-medium text-gray-600 mb-3">
+              Featured photos*
+            </h4>
+            <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center bg-white">
+              <div className="flex flex-col items-center">
+                <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2">
+                  <Upload className="w-6 h-6 text-gray-400" />
+                </div>
+                <p className="text-sm text-gray-600">Upload cover photo</p>
+                <p className="text-xs text-gray-400">Max size: 5MB</p>
+              </div>
+            </div>
+          </div>
+
+          {/* More Photos */}
+          <div>
+            <h4 className="text-sm font-medium text-gray-600 mb-3">
+              More photos<span className="text-gray-500">(optional)</span>
+            </h4>
+            <div className="grid grid-cols-4 lg:grid-cols-7 gap-3">
+              {[...Array(14)].map((_, index) => (
+                <div
+                  key={index}
+                  className="border-2 border-dashed border-gray-300 rounded-lg aspect-square flex items-center justify-center bg-white hover:bg-gray-50 cursor-pointer"
                 >
-                  <span className="text-sm">{utility}</span>
-                  <div className="flex gap-1">
-                    <button className="btn btn-xs btn-ghost text-blue-600">
-                      <Edit className="w-3 h-3" />
-                    </button>
-                    <button className="btn btn-xs btn-ghost text-red-600">
-                      <Trash2 className="w-3 h-3" />
-                    </button>
-                  </div>
-                </li>
+                  <Plus className="w-6 h-6 text-gray-400" />
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Gallery (Photos only example) */}
-        <div className="mt-8">
-          <h3 className="font-semibold text-gray-900 mb-2">Property Gallery</h3>
-          <p className="text-sm text-gray-500 mb-4">(This is not unit photo)</p>
-
-          <div className="grid grid-cols-6 gap-3 mb-6">
-            <PhotoUploadBox
-              label="Upload cover photo (max 5MB)"
-              isLarge
-              hasImage
-            />
-            {Array.from({ length: 6 }).map((_, i) => (
-              <PhotoUploadBox key={i} hasImage={i < 2} />
-            ))}
+      {/* Videos Section */}
+      <div className="col-span-1 lg:col-span-2 mt-6">
+        <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="font-medium text-gray-700">
+              Videos<span className="text-gray-500">(optional)</span>
+            </h3>
+            <button className="text-gray-400">
+              <HelpCircle className="w-5 h-5" />
+            </button>
           </div>
-        </div>
-        <ProgressBar step={3} totalSteps={4} />
-        {/* Navigation */}
-        <div className="flex justify-between  pt-6">
-          <button
-            onClick={prev}
-            className=" border-b-2 leading-none mt-4 cursor-pointer"
-          >
-            Back
-          </button>
-          <button
-            onClick={next}
-            className="btn btn-primary rounded-lg bg-[#316EED] border-none px-8"
-          >
-            Next
-          </button>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Property Video */}
+            <div className="bg-white border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+              <div className="flex flex-col items-center">
+                <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-3">
+                  <Upload className="w-6 h-6 text-gray-400" />
+                </div>
+                <p className="text-sm font-medium text-gray-700 mb-1">
+                  Upload video
+                </p>
+                <p className="text-xs text-gray-500">
+                  Property Video (optional)
+                </p>
+                <p className="text-xs text-gray-400 mt-1">Max size: 50MB</p>
+              </div>
+            </div>
+
+            {/* Virtual Tour */}
+            <div className="bg-white border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+              <div className="flex flex-col items-center">
+                <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-3">
+                  <Upload className="w-6 h-6 text-gray-400" />
+                </div>
+                <p className="text-sm font-medium text-gray-700 mb-1">
+                  Upload video
+                </p>
+                <p className="text-xs text-gray-500">
+                  Property virtual tour(optional)
+                </p>
+                <p className="text-xs text-gray-400 mt-1">Max size: 50MB</p>
+              </div>
+            </div>
+
+            {/* Arial Video */}
+            <div className="bg-white border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+              <div className="flex flex-col items-center">
+                <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-3">
+                  <Upload className="w-6 h-6 text-gray-400" />
+                </div>
+                <p className="text-sm font-medium text-gray-700 mb-1">
+                  Upload video
+                </p>
+                <p className="text-xs text-gray-500">
+                  Property arial video (optional)
+                </p>
+                <p className="text-xs text-gray-400 mt-1">Max size: 50MB</p>
+              </div>
+            </div>
+          </div>
+          <ProgressBar step={3} totalSteps={4} />
+          {/* Navigation */}
+          <div className="flex justify-between  pt-6">
+            <button
+              onClick={prev}
+              className=" border-b-2 leading-none mt-4 cursor-pointer"
+            >
+              Back
+            </button>
+            <button
+              onClick={next}
+              className="btn btn-primary rounded-lg bg-[#316EED] border-none px-8"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default CondominiumsFilled;

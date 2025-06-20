@@ -56,32 +56,28 @@ export function SubscriptionPlans({prev}) {
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="flex justify-between items-center p-6 border-b bg-base-100">
-        <div className="flex items-center gap-2">
-          <div className="bg-blue-600 w-8 h-8 flex items-center justify-center rounded">
-            <Home className="text-white w-5 h-5" />
-          </div>
-          <span className="text-xl font-semibold text-blue-600">RentYard</span>
-        </div>
-        <button className="btn btn-ghost">Save & Exit</button>
-      </div>
-
       <div className="max-w-4xl mx-auto p-6 space-y-6">
-        <h1 className="text-2xl font-bold text-gray-800">
+        <h1 className="text-xl font-bold text-gray-700">
           Choose a plan for after 30-days free trial
         </h1>
 
         <div role="tablist" className="tabs tabs-boxed">
           <a
             role="tab"
-            className={`tab ${billingCycle === "monthly" && "tab-active"}`}
+            className={`tab ${
+              billingCycle === "monthly" &&
+              "tab-active text-[#316EED] bg-blue-100 rounded-2xl "
+            }`}
             onClick={() => setBillingCycle("monthly")}
           >
             Monthly
           </a>
           <a
             role="tab"
-            className={`tab ${billingCycle === "annually" && "tab-active"}`}
+            className={`tab ${
+              billingCycle === "annually" &&
+              "tab-active text-[#316EED] bg-blue-100 rounded-2xl"
+            }`}
             onClick={() => setBillingCycle("annually")}
           >
             Annually (save 20%)
@@ -127,17 +123,23 @@ export function SubscriptionPlans({prev}) {
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
-            Payment option
-          </h3>
+          <div className="flex items-center justify-between">
+            <h3 className="text-lg font-semibold text-gray-900 ">
+              Payment option
+            </h3>
+            <button
+              className="btn btn-ghost text-blue-600 mt-4"
+              onClick={() => setIsPaymentModalOpen(true)}
+            >
+              <Plus className="w-4 h-4 mr-1" /> Add new card
+            </button>
+          </div>
           <div className="space-y-3">
             {paymentMethods.map((method) => (
               <div
                 key={method.id}
-                className={`card cursor-pointer border ${
-                  selectedPayment === method.id
-                    ? "border-blue-500 bg-blue-50"
-                    : "hover:shadow"
+                className={`card cursor-pointer bg-base-200 ${
+                  selectedPayment === method.id ? "" : "hover:shadow"
                 }`}
               >
                 <div className="card-body flex-row items-center justify-between">
@@ -151,8 +153,8 @@ export function SubscriptionPlans({prev}) {
                   <button
                     className={`btn btn-sm ${
                       selectedPayment === method.id
-                        ? "btn-primary"
-                        : "btn-outline"
+                        ? "btn bg-[#316EED] text-white rounded-lg"
+                        : "btn text-[#316EED] border-blue-500"
                     }`}
                     onClick={() => setSelectedPayment(method.id)}
                   >
@@ -162,13 +164,6 @@ export function SubscriptionPlans({prev}) {
               </div>
             ))}
           </div>
-
-          <button
-            className="btn btn-ghost text-blue-600 mt-4"
-            onClick={() => setIsPaymentModalOpen(true)}
-          >
-            <Plus className="w-4 h-4 mr-1" /> Add new card
-          </button>
         </div>
         <ProgressBar step={4} totalSteps={4} />
         <div className="flex justify-between items-center pt-8">
@@ -187,7 +182,7 @@ export function SubscriptionPlans({prev}) {
               </p>
             </div>
             <button
-              className="btn btn-primary px-6"
+              className="btn bg-[#316EED] text-white rounded-xl px-6"
               disabled={!selectedPlan || !selectedPayment}
             >
               Pay & add property
