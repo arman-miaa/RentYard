@@ -91,7 +91,7 @@ const PropertySetup = ({ next }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="max-w-6xl mx-auto p-6 space-y-8">
+      <div className="container mx-auto py-6 space-y-8">
         {/* Property Type */}
         <div>
           <h2 className="text-2xl font-semibold text-gray-900 mb-6">

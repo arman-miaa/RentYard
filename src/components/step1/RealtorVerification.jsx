@@ -2,7 +2,7 @@ import { Upload } from "lucide-react";
 
 export function RealtorVerification({ acceptTerms, onAcceptTermsChange }) {
   return (
-    <div className="space-y-6 p-6 rounded-lg">
+    <div className="space-y-6 py-6 rounded-lg">
       <h3 className="text-lg font-semibold text-[#6F6C6A] w-full text-left border border-[#e0e0e0] bg-[#f4f4f4] rounded-lg p-2">
         Realtor verification
       </h3>

@@ -56,7 +56,7 @@ export function SubscriptionPlans({prev}) {
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="max-w-4xl mx-auto p-6 space-y-6">
+      <div className="container mx-auto py-6 space-y-6">
         <h1 className="text-xl font-bold text-gray-700">
           Choose a plan for after 30-days free trial
         </h1>
