@@ -206,10 +206,10 @@ export default function LeasingInfoModal({ isOpen, onClose }) {
         </div>
 
         {/* Action Button */}
-        <div className="flex justify-end mt-6 border-t pt-4">
+        <div className="flex justify-end mt-6 border-t border-base-300 pt-4">
           <button
             onClick={onClose}
-            className="btn bg-[#316EED] text-white px-8"
+            className="btn bg-[#316EED] text-white px-4"
           >
             Add
           </button>
